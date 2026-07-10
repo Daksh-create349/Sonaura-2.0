@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonaura 2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Comic+Neue:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="extension-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <h1 class="logo-title">Sonaura</h1>
+        <span class="badge">Atmos 5.1</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button id="theme-toggle" class="btn-gray btn-micro" title="Toggle Light/Dark Theme">Dark Mode</button>
+        <button id="power-btn" class="power-btn offline" title="Toggle Sonaura Audio Capture">
+          <svg class="power-icon" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v10M18.364 5.636a9 9 0 11-12.728 0" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content Panel -->
+    <main id="controls-container" class="controls-disabled">
+      <!-- Status Notice -->
+      <div id="status-banner" class="status-banner">
+        Click Power Button to Enhance Active Tab
+      </div>
+
+      <!-- Real-Time Frequency Visualizer -->
+      <div class="visualizer-panel">
+        <canvas id="visualizer" width="352" height="70"></canvas>
+      </div>
+
+      <!-- Preset Selector Panel -->
+      <section class="panel">
+        <h2 class="panel-title">Preset Profile</h2>
+        <div class="preset-row">
+          <div class="select-wrapper">
+            <select id="preset-select" class="custom-select">
+              <option value="cinema">Cinema Default</option>
+              <option value="action">Action Boost</option>
+              <option value="dialogue">Dialogue Clarity</option>
+              <option value="night">Night Mode</option>
+              <option value="bypass">Bypass</option>
+              <option value="custom_unsaved" hidden>Custom...</option>
+            </select>
+          </div>
+          <button id="save-preset-btn" class="btn-cyan btn-small hide">Save</button>
+          <button id="delete-preset-btn" class="btn-red btn-small hide">Del</button>
+        </div>
+      </section>
+
+      <!-- Advanced Features Group (Row) -->
+      <div class="grid-2">
+        <!-- Room EQ -->
+        <section class="panel interactive" id="calibrate-container">
+          <div class="panel-header-text">
+            <h3 class="panel-sub-title">Room EQ Calibration</h3>
+            <p class="panel-desc">Acoustic Auto-Tune (5s)</p>
+          </div>
+          <button id="calibrate-btn" class="btn-cyan btn-micro">CALIBRATE</button>
+        </section>
+
+        <!-- Impulse Response -->
+        <section class="panel">
+          <h3 class="panel-sub-title">Custom Cinema IR</h3>
+          <input type="file" id="ir-upload" accept=".wav" class="hide">
+          <div class="ir-buttons">
+            <button id="ir-upload-btn" class="btn-cyan btn-micro">Upload</button>
+            <button id="ir-reset-btn" class="btn-gray btn-micro">Reset</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Audio Processor Switched Options -->
+      <section class="panel space-y">
+        <div class="toggle-row" id="surround-toggle-container">
+          <div class="toggle-text">
+            <span class="toggle-label">5.1 Virtual Surround</span>
+            <span class="toggle-desc">HRTF Binaural Panner Matrix</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="surround-toggle" checked>
+            <span class="slider-switch"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row" id="reverb-toggle-container">
+          <div class="toggle-text">
+            <span class="toggle-label">Cinema Hall Reverb</span>
+            <span class="toggle-desc">Simulated Theater Reflections</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="reverb-toggle" checked>
+            <span class="slider-switch"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row" id="exciter-toggle-container">
+          <div class="toggle-text">
+            <span class="toggle-label">Subharmonic Exciter</span>
+            <span class="toggle-desc">Bass Saturation Overtones</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="exciter-toggle" checked>
+            <span class="slider-switch"></span>
+          </label>
+        </div>
+
+
+      </section>
+
+      <!-- Parameter Control Sliders -->
+      <section class="panel sliders-panel">
+        <!-- Master Volume -->
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="volume-slider">Master Volume</label>
+            <span id="volume-val" class="val-cyan">0.90</span>
+          </div>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.9">
+        </div>
+
+        <!-- Bass Boost -->
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="bass-slider">Bass Boost</label>
+            <span id="bass-val" class="val-cyan">+6.0 dB</span>
+          </div>
+          <input type="range" id="bass-slider" min="-15" max="15" step="0.5" value="6">
+        </div>
+
+        <!-- Treble -->
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="treble-slider">Treble Enhance</label>
+            <span id="treble-val" class="val-cyan">+2.0 dB</span>
+          </div>
+          <input type="range" id="treble-slider" min="-10" max="10" step="0.5" value="2">
+        </div>
+
+        <!-- Surround Intensity -->
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="surround-intensity-slider">Surround Stage Width</label>
+            <span id="surround-intensity-val" class="val-cyan">1.0</span>
+          </div>
+          <input type="range" id="surround-intensity-slider" min="0.1" max="5" step="0.1" value="1.0">
+        </div>
+
+        <!-- Exciter Mix -->
+        <div class="slider-group">
+          <div class="slider-header">
+            <label for="exciter-mix-slider">Sub-Bass Saturation Mix</label>
+            <span id="exciter-mix-val" class="val-cyan">0.20</span>
+          </div>
+          <input type="range" id="exciter-mix-slider" min="0" max="0.5" step="0.01" value="0.2">
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

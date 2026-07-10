@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Sonaura 2.0",
+  "version": "2.0",
+  "description": "Immersive cinema-grade 5.1 virtual surround sound & room EQ calibration for streaming platforms.",
+  "permissions": [
+    "tabCapture",
+    "offscreen",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Sonaura"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

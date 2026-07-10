@@ -1,0 +1,601 @@
+/* popup.css - Sonaura 2.0 Ink-Sketch Scribble UI */
+
+:root {
+  --paper-bg: #ffffff;
+  --panel-bg: #ffffff;
+  --border-color: #000000;
+  --text-primary: #000000;
+  --text-secondary: #222222;
+  --text-muted: #666666;
+  
+  /* Hatching patterns as gradients */
+  --hatch-active: repeating-linear-gradient(
+    45deg,
+    #000000,
+    #000000 1.5px,
+    #ffffff 1.5px,
+    #ffffff 5px
+  );
+  --hatch-hover: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.08),
+    rgba(0, 0, 0, 0.08) 1.5px,
+    #ffffff 1.5px,
+    #ffffff 5px
+  );
+}
+
+/* Auto Dark Mode via Media Query (matches OS/Browser preferred theme) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper-bg: #121212;
+    --panel-bg: #1e1e1e;
+    --border-color: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #dddddd;
+    --text-muted: #aaaaaa;
+    
+    --hatch-active: repeating-linear-gradient(
+      45deg,
+      #ffffff,
+      #ffffff 1.5px,
+      #121212 1.5px,
+      #121212 5px
+    );
+    --hatch-hover: repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.12) 1.5px,
+      #121212 1.5px,
+      #121212 5px
+    );
+  }
+}
+
+/* Explicit Light Theme Override */
+[data-theme="light"] {
+  --paper-bg: #ffffff;
+  --panel-bg: #ffffff;
+  --border-color: #000000;
+  --text-primary: #000000;
+  --text-secondary: #222222;
+  --text-muted: #666666;
+  
+  --hatch-active: repeating-linear-gradient(
+    45deg,
+    #000000,
+    #000000 1.5px,
+    #ffffff 1.5px,
+    #ffffff 5px
+  );
+  --hatch-hover: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.08),
+    rgba(0, 0, 0, 0.08) 1.5px,
+    #ffffff 1.5px,
+    #ffffff 5px
+  );
+}
+
+/* Explicit Dark Theme Override */
+[data-theme="dark"] {
+  --paper-bg: #121212;
+  --panel-bg: #1e1e1e;
+  --border-color: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #dddddd;
+  --text-muted: #aaaaaa;
+  
+  --hatch-active: repeating-linear-gradient(
+    45deg,
+    #ffffff,
+    #ffffff 1.5px,
+    #121212 1.5px,
+    #121212 5px
+  );
+  --hatch-hover: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.12) 1.5px,
+    #121212 1.5px,
+    #121212 5px
+  );
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--paper-bg);
+}
+
+body {
+  width: 400px;
+  font-family: 'Patrick Hand', cursive, sans-serif;
+  background-color: var(--paper-bg);
+  color: var(--text-primary);
+  padding: 20px;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Extension Container styling */
+.extension-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 0 5px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-title {
+  font-family: 'Caveat', cursive;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.logo-title::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: 8px;
+  height: 4px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  z-index: -1;
+  transform: rotate(-1deg);
+}
+
+.badge {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  border: 2.5px solid var(--border-color);
+  background: var(--paper-bg);
+  border-radius: 12px 4px 14px 5px / 6px 12px 5px 15px;
+  padding: 1px 8px;
+  transform: rotate(2deg);
+  box-shadow: 2px 2px 0px var(--border-color);
+}
+
+/* Power Button - Sketchy Round Button */
+.power-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50% 45% 52% 48% / 48% 52% 45% 50%;
+  border: 2.5px solid var(--border-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  outline: none;
+  box-shadow: 3.5px 3.5px 0px var(--border-color);
+}
+
+.power-icon {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.2s ease;
+}
+
+.power-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4.5px 4.5px 0px var(--border-color);
+}
+
+.power-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--border-color);
+}
+
+.power-btn.offline {
+  background: var(--paper-bg);
+  color: var(--text-primary);
+}
+
+/* Active State with concentric ring and jitter */
+.power-btn.online {
+  background: var(--hatch-active);
+  color: var(--text-primary);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--border-color);
+  animation: jitter 0.15s infinite alternate;
+  position: relative;
+}
+
+.power-btn.online::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background: var(--paper-bg);
+  border: 2.5px solid var(--border-color);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.power-btn.online .power-icon {
+  z-index: 2;
+  color: var(--text-primary);
+}
+
+@keyframes jitter {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  25% { transform: translate(-1px, 1px) rotate(-1.5deg); }
+  50% { transform: translate(1px, -1px) rotate(1deg); }
+  75% { transform: translate(-1px, -1px) rotate(-0.5deg); }
+  100% { transform: translate(1px, 1px) rotate(1.5deg); }
+}
+
+/* Disabled Overlay State */
+.controls-disabled {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+#controls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+/* Status Banner - Box with Details outline style */
+.status-banner {
+  background: var(--paper-bg);
+  border: 2.5px solid var(--border-color);
+  border-radius: 8px 12px 6px 10px / 10px 6px 12px 8px;
+  color: var(--text-primary);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  padding: 8px;
+  box-shadow: 3px 3px 0px var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.status-banner.active {
+  background: var(--text-primary);
+  color: var(--paper-bg);
+}
+
+/* Panels */
+.panel {
+  background: var(--panel-bg);
+  border: 2.5px solid var(--border-color);
+  border-radius: 12px 6px 14px 5px / 5px 14px 6px 12px;
+  padding: 12px 14px;
+  box-shadow: 3.5px 3.5px 0px var(--border-color);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.panel-title {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  text-decoration: underline;
+}
+
+.panel-sub-title {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.panel-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* Grids */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Visualizer Canvas container */
+.visualizer-panel {
+  background: var(--panel-bg);
+  border: 2.5px solid var(--border-color);
+  border-radius: 12px 8px 14px 6px / 6px 14px 8px 12px;
+  padding: 4px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px var(--border-color);
+}
+
+#visualizer {
+  display: block;
+  width: 100%;
+  height: 70px;
+  border-radius: 6px;
+  background: var(--paper-bg);
+}
+
+/* Preset Dropdown Row */
+.preset-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.select-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.custom-select {
+  width: 100%;
+  background: var(--panel-bg);
+  border: 2.5px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 8px 12px 6px 10px / 10px 6px 12px 8px;
+  outline: none;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  appearance: none;
+  box-shadow: 2px 2px 0px var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.custom-select:focus {
+  background: var(--hatch-hover);
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 10px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-primary);
+}
+
+/* Buttons - Ok / Details style */
+.btn-cyan, .btn-red, .btn-gray {
+  background: var(--paper-bg);
+  border: 2.5px solid var(--border-color);
+  border-radius: 8px 5px 8px 5px / 5px 8px 5px 8px;
+  font-family: 'Patrick Hand', cursive;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2.5px 2.5px 0px var(--border-color);
+}
+
+.btn-cyan:hover, .btn-red:hover, .btn-gray:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3.5px 3.5px 0px var(--border-color);
+  background: var(--hatch-hover);
+}
+
+.btn-cyan:active, .btn-red:active, .btn-gray:active {
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1px 1px 0px var(--border-color);
+  background: var(--paper-bg);
+}
+
+.btn-small {
+  padding: 6px 12px;
+}
+
+.btn-micro {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.panel.interactive {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ir-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.ir-buttons button {
+  flex: 1;
+}
+
+/* Switch Toggles - Shaded Slider Switch Style */
+.space-y {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-label {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.toggle-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--paper-bg);
+  border: 2.5px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 2px 2px 0px var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.slider-switch:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 3px;
+  bottom: 2.5px;
+  background-color: var(--border-color);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+input:checked + .slider-switch {
+  background: var(--hatch-active);
+}
+
+input:checked + .slider-switch:before {
+  transform: translateX(20px);
+  background-color: var(--border-color);
+  box-shadow: 0 0 0 2.5px var(--paper-bg); /* splits knob from dark hatch fill */
+}
+
+/* Sliders Panel styling */
+.sliders-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.val-cyan {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--paper-bg);
+  padding: 1px 8px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0px var(--border-color);
+  transform: rotate(-1.5deg);
+  display: inline-block;
+}
+
+/* Range Inputs - Custom Concentric Slider Thumb */
+input[type=range] {
+  -webkit-appearance: none;
+  background: transparent;
+  width: 100%;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: var(--paper-bg);
+  border: 2.5px solid var(--border-color);
+  border-radius: 5px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 2.5px solid var(--border-color);
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: var(--paper-bg);
+  /* Concentric circles shading style matching user reference image */
+  box-shadow: inset 0 0 0 3px var(--paper-bg), inset 0 0 0 6px var(--border-color), 2px 2px 0px var(--border-color);
+  cursor: pointer;
+  margin-top: -9.5px;
+  transition: transform 0.1s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.1) rotate(10deg);
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+
+
+/* Helpers */
+.hide {
+  display: none !important;
+}

@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 <img src="docs/header_banner.png" alt="Sonaura 2.0" width="100%"/>
 
@@ -443,4 +443,4 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for t
 **If Sonaura changed how you listen, consider starring the repo.**
 
 </div>
-]]>
+

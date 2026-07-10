@@ -37,32 +37,7 @@ No external software. No system drivers. No subscriptions. One click. One extens
 
 <br/>
 
----
 
-<br/>
-
-## Before & After
-
-<table>
-<tr>
-<td align="center" width="50%">
-<a href="https://www.youtube.com/watch?v=Rd21PhsDHww">
-<img src="docs/before_player.png" alt="Before - Standard Browser Stereo" width="100%"/>
-</a>
-</td>
-<td align="center" width="50%">
-<a href="https://www.youtube.com/watch?v=Rd21PhsDHww">
-<img src="docs/after_player.png" alt="After - Sonaura Atmos 5.1 Applied" width="100%"/>
-</a>
-</td>
-</tr>
-</table>
-
-<br/>
-
----
-
-<br/>
 
 ## The Interface
 

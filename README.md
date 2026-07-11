@@ -411,7 +411,7 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for t
 
 <br/><br/>
 
-*sketched with care. engineered with obsession. built for your ears.*
+*Crafted with precision. engineered with obsession. built for your ears.*
 
 <br/>
 

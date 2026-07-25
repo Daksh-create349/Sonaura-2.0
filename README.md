@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/00a8c5a5-b9d8-40a6-b621-27c6a9abba2e
+
 <div align="center">
 
 <img src="docs/header_banner.png" alt="Sonaura 2.0" width="100%"/>

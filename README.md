@@ -1,5 +1,11 @@
 <div align="center">
 
+<div align="center">
+  <video src="Trailer/Trailer.mp4" controls playsinline poster="docs/header_banner.png" width="100%"></video>
+</div>
+
+<br/>
+
 <img src="docs/header_banner.png" alt="Sonaura 2.0" width="100%"/>
 
 <br/><br/>

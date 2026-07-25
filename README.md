@@ -1,12 +1,6 @@
 <div align="center">
 
-  <video controls width="100%" poster="docs/header_banner.png">
-    <source src="Trailer/Trailer.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-<br/>
-
+<img src="docs/header_banner.png" alt="Sonaura 2.0" width="100%"/>
 
 <br/><br/>
 

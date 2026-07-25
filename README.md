@@ -1,7 +1,10 @@
 <div align="center">
 
 <div align="center">
-  <video src="Trailer/Trailer.mp4" controls playsinline poster="docs/header_banner.png" width="100%"></video>
+  <video controls width="100%" poster="docs/header_banner.png">
+    <source src="Trailer/Trailer.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 </div>
 
 <br/>

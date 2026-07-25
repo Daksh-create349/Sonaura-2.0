@@ -4,6 +4,30 @@
 
 <br/><br/>
 
+<blockquote>
+<h3 align="center">OFFICIAL RELEASE</h3>
+<h1 align="center">SONAURA 2.0 IS LIVE ON MICROSOFT EDGE</h1>
+<p align="center">
+<strong>Experience professional-grade virtualized 5.1 surround sound, cinema hall reverb, subharmonic excitation, and real-time Room EQ auto-calibration directly inside Microsoft Edge.</strong>
+</p>
+<p align="center">
+Zero compilation. Zero developer-mode switches. Real-time cinematic DSP with a single click.
+</p>
+<br/>
+<div align="center">
+  <a href="https://microsoftedge.microsoft.com/addons/detail/sonaura-20/fpgjfmocgbndajfepomhalakhhjaphjl" target="_blank">
+    <img src="https://img.shields.io/badge/INSTALL_FROM_EDGE_ADD--ONS-0078D7?style=for-the-badge&logo=microsoft-edge&logoColor=white" alt="Get Sonaura 2.0 on Microsoft Edge" height="42"/>
+  </a>
+</div>
+<br/>
+</blockquote>
+
+<br/>
+
+---
+
+<br/>
+
 <img src="docs/icon_preview.jpg" alt="Sonaura Icon" width="100"/>
 
 <br/><br/>
@@ -14,6 +38,7 @@
 
 <br/>
 
+[![Edge Add-on Badge](https://img.shields.io/badge/Platform-Edge_Add--ons-0078D7?style=for-the-badge&logo=microsoft-edge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/sonaura-20/fpgjfmocgbndajfepomhalakhhjaphjl)
 [![Chrome Extension](https://img.shields.io/badge/Platform-Chrome_Extension-333333?style=for-the-badge&logo=googlechrome&logoColor=white)](https://github.com)
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-333333?style=for-the-badge)](https://developer.chrome.com/docs/extensions/mv3/)
 [![Web Audio API](https://img.shields.io/badge/Engine-Web_Audio_API-333333?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
